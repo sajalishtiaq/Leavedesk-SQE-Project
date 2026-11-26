@@ -1,0 +1,39 @@
+--- a/backend/app/services.py
++++ b/backend/app/services.py
+@@ -1,4 +1,6 @@
+ from datetime import date, timedelta
++
++from sqlalchemy.exc import IntegrityError
+ 
+ from .extensions import db
+ from .models import LEAVE_TYPE_DEFAULTS, LeaveBalance, LeaveRequest, LeaveType, utcnow
+@@ -32,15 +34,20 @@
+         user_id=user.id, leave_type_id=leave_type.id, year=year
+     ).first()
+     if balance is None:
+-        balance = LeaveBalance(
+-            user_id=user.id,
+-            leave_type_id=leave_type.id,
+-            year=year,
+-            allocated_days=leave_type.default_days,
+-            used_days=0,
+-        )
+-        db.session.add(balance)
+-        db.session.flush()
++        try:
++            with db.session.begin_nested():          # SAVEPOINT: a lost race rolls back only this insert
++                balance = LeaveBalance(
++                    user_id=user.id,
++                    leave_type_id=leave_type.id,
++                    year=year,
++                    allocated_days=leave_type.default_days,
++                    used_days=0,
++                )
++                db.session.add(balance)
++        except IntegrityError:                       # another request created the row first
++            balance = LeaveBalance.query.filter_by(
++                user_id=user.id, leave_type_id=leave_type.id, year=year
++            ).one()
+     return balance
+ 
+ 

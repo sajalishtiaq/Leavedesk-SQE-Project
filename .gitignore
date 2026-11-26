@@ -16,3 +16,9 @@ dist/
 
 .DS_Store
 Thumbs.db
+node_modules/
+e2e/node_modules/
+mutants/
+.coverage
+coverage.xml
+test-results/

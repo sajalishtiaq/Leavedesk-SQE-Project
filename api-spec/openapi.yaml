@@ -1,0 +1,99 @@
+openapi: 3.0.3
+info:
+  title: LeaveDesk API (team spec for test-data generation)
+  version: 1.0.0
+  description: >
+    Hand-written spec of the endpoints under test. Constraints here DRIVE the generator
+    (tools/gen_test_data.py). Vendor extensions: x-min-days-from-today (date lower bound relative
+    to "today"), x-above-max-status (status expected when value > maximum), x-clamp (value is
+    clamped, not rejected).
+servers:
+  - url: http://localhost:5001
+paths:
+  /api/leave-requests:
+    post:
+      operationId: applyLeave
+      summary: Workflow A - apply for leave
+      security: [{bearerAuth: []}]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/ApplyLeave'}
+      responses:
+        '201': {description: Request created (pending)}
+        '401': {description: Not authenticated}
+        '404': {description: Unknown leave type}
+        '422': {description: Validation / business-rule rejection}
+    get:
+      operationId: listLeave
+      summary: List leave requests
+      security: [{bearerAuth: []}]
+      parameters:
+        - {name: page, in: query, required: false, schema: {type: integer, minimum: 1, x-clamp: true}}
+        - {name: per_page, in: query, required: false, schema: {type: integer, minimum: 1, maximum: 50, x-clamp: true}}
+        - {name: status, in: query, required: false, schema: {type: string, enum: [pending, approved, rejected, cancelled]}}
+      responses:
+        '200': {description: OK}
+        '400': {description: Bad query parameter}
+  /api/leave-requests/{id}/review:
+    post:
+      operationId: reviewLeave
+      summary: Workflow B - admin approves / rejects
+      security: [{bearerAuth: []}]
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: integer, minimum: 1}}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/Review'}
+      responses:
+        '200': {description: Reviewed}
+        '403': {description: Not admin / own request}
+        '404': {description: Not found}
+        '409': {description: Not pending}
+        '422': {description: Validation / balance}
+  /api/leave-requests/{id}/cancel:
+    post:
+      operationId: cancelLeave
+      summary: Owner cancels a pending/approved request
+      security: [{bearerAuth: []}]
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: integer, minimum: 1}}
+      responses:
+        '200': {description: Cancelled}
+        '403': {description: Not owner}
+        '404': {description: Not found}
+        '409': {description: Not cancellable}
+  /api/leave-balances:
+    get:
+      operationId: getBalances
+      summary: Shared record - leave balances
+      security: [{bearerAuth: []}]
+      parameters:
+        - {name: year, in: query, required: false, schema: {type: integer}}
+        - {name: user_id, in: query, required: false, schema: {type: integer}}
+      responses:
+        '200': {description: OK}
+        '400': {description: Bad parameter}
+        '403': {description: Other user's balances (employee)}
+        '404': {description: Unknown employee}
+components:
+  securitySchemes:
+    bearerAuth: {type: http, scheme: bearer, bearerFormat: JWT}
+  schemas:
+    ApplyLeave:
+      type: object
+      required: [leave_type_id, start_date, end_date, reason]
+      properties:
+        leave_type_id: {type: integer, minimum: 1, maximum: 3, x-above-max-status: 404}
+        start_date: {type: string, format: date, x-min-days-from-today: 0}
+        end_date: {type: string, format: date, x-min-field: start_date}
+        reason: {type: string, minLength: 10, maxLength: 500}
+    Review:
+      type: object
+      required: [decision]
+      properties:
+        decision: {type: string, enum: [approve, reject]}
+        note: {type: string, maxLength: 500}

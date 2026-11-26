@@ -1,0 +1,54 @@
+KILLED   app/services.py LIMIT weekday() threshold +1
+KILLED   app/services.py LIMIT weekday() threshold -1
+KILLED   app/services.py OWNER flip == / != in `LeaveRequest.user_id == user_id`
+KILLED   app/services.py STATUS 'pending' -> 'approved'
+KILLED   app/services.py STATUS 'approved' -> 'rejected'
+KILLED   app/services.py BALANCE `<` -> `<=` in `balance.remaining_days < days`
+KILLED   app/services.py BALANCE `<` -> `>` in `balance.remaining_days < days`
+KILLED   app/services.py BALANCE `<` -> `<=` in `balance.remaining_days < leave_request.days`
+KILLED   app/services.py BALANCE `<` -> `>` in `balance.remaining_days < leave_request.days`
+KILLED   app/services.py USED `balance.used_days += leave_request.days` sign flip
+KILLED   app/services.py STATUS 'approved' -> 'rejected'
+KILLED   app/utils.py ROLE negate is_admin
+KILLED   app/utils.py LIMIT per_page cap 50 +1
+KILLED   app/utils.py LIMIT per_page cap 50 -1
+SURVIVED app/api/leaves.py STATUS 'pending' -> 'approved'
+KILLED   app/api/leaves.py STATUS 'approved' -> 'rejected'
+SURVIVED app/api/leaves.py STATUS 'rejected' -> 'cancelled'
+SURVIVED app/api/leaves.py STATUS 'cancelled' -> 'pending'
+KILLED   app/api/leaves.py OWNER flip == / != in `leave_request.user_id != user.id`
+KILLED   app/api/leaves.py ROLE negate is_admin
+KILLED   app/api/leaves.py ROLE negate is_admin
+KILLED   app/api/leaves.py ROLE negate is_admin
+KILLED   app/api/leaves.py OWNER flip == / != in `LeaveRequest.user_id == user.id`
+SURVIVED app/api/leaves.py OWNER flip == / != in `LeaveRequest.user_id == int(user_id)`
+SURVIVED app/api/leaves.py OWNER flip == / != in `LeaveRequest.user_id == User.id`
+KILLED   app/api/leaves.py ROLE negate is_admin
+KILLED   app/api/leaves.py OWNER flip == / != in `LeaveRequest.user_id == User.id`
+KILLED   app/api/leaves.py LIMIT min_length=10 +1
+KILLED   app/api/leaves.py LIMIT min_length=10 -1
+KILLED   app/api/leaves.py LIMIT max_length=500 +1
+KILLED   app/api/leaves.py LIMIT max_length=500 -1
+KILLED   app/api/leaves.py STATUS 'pending' -> 'approved'
+KILLED   app/api/leaves.py OWNER flip == / != in `leave_request.user_id != user.id`
+KILLED   app/api/leaves.py STATUS 'pending' -> 'approved'
+KILLED   app/api/leaves.py STATUS 'approved' -> 'rejected'
+KILLED   app/api/leaves.py STATUS 'approved' -> 'rejected'
+KILLED   app/api/leaves.py USED `balance.used_days - leave_request.days` - -> +
+KILLED   app/api/leaves.py STATUS 'cancelled' -> 'pending'
+KILLED   app/api/leaves.py ROLE negate is_admin
+SURVIVED app/api/leaves.py LIMIT max_length=20 +1
+SURVIVED app/api/leaves.py LIMIT max_length=20 -1
+KILLED   app/api/leaves.py LIMIT max_length=500 +1
+KILLED   app/api/leaves.py LIMIT max_length=500 -1
+KILLED   app/api/leaves.py STATUS 'pending' -> 'approved'
+KILLED   app/api/leaves.py OWNER flip == / != in `leave_request.user_id == reviewer.id`
+KILLED   app/api/leaves.py STATUS 'rejected' -> 'cancelled'
+custom operators: total=46 killed=39 survived=7 score=84.8%
+  BALANCE: killed=4 survived=0
+  LIMIT: killed=10 survived=2
+  OWNER: killed=6 survived=2
+  ROLE: killed=6 survived=0
+  STATUS: killed=11 survived=3
+  USED: killed=2 survived=0
+exit=0

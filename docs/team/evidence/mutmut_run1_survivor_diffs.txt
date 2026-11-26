@@ -1,0 +1,203 @@
+=== app.services.x_balance_for__mutmut_5
+-        user_id=user.id, leave_type_id=leave_type.id, year=year
++        leave_type_id=leave_type.id, year=year
+=== app.services.x_balance_for__mutmut_6
+-        user_id=user.id, leave_type_id=leave_type.id, year=year
++        user_id=user.id, year=year
+=== app.services.x_balance_for__mutmut_7
+-        user_id=user.id, leave_type_id=leave_type.id, year=year
+-    ).first()
++        user_id=user.id, leave_type_id=leave_type.id, ).first()
+=== app.services.x_balance_for__mutmut_14
+-            used_days=0,
++            used_days=None,
+=== app.services.x_balance_for__mutmut_19
+-            used_days=0,
+-        )
++            )
+=== app.services.x_balances_for__mutmut_7
+-        for leave_type in LeaveType.query.order_by(LeaveType.sort_order.asc()).all()
++        for leave_type in LeaveType.query.order_by(None).all()
+=== app.services.x_overlapping_request__mutmut_20
+-        query = query.filter(LeaveRequest.id != exclude_id)
++        query = query.filter(None)
+=== app.services.x_validate_leave_window__mutmut_3
+-        errors["end_date"] = "End date cannot be before the start date."
++        errors["end_date"] = None
+=== app.services.x_validate_leave_window__mutmut_6
+-        errors["end_date"] = "End date cannot be before the start date."
++        errors["end_date"] = "XXEnd date cannot be before the start date.XX"
+=== app.services.x_validate_leave_window__mutmut_7
+-        errors["end_date"] = "End date cannot be before the start date."
++        errors["end_date"] = "end date cannot be before the start date."
+=== app.services.x_validate_leave_window__mutmut_8
+-        errors["end_date"] = "End date cannot be before the start date."
++        errors["end_date"] = "END DATE CANNOT BE BEFORE THE START DATE."
+=== app.services.x_validate_leave_window__mutmut_13
+-        errors["end_date"] = "A leave request cannot span two calendar years."
++        errors["end_date"] = "XXA leave request cannot span two calendar years.XX"
+=== app.services.x_validate_leave_window__mutmut_14
+-        errors["end_date"] = "A leave request cannot span two calendar years."
++        errors["end_date"] = "a leave request cannot span two calendar years."
+=== app.services.x_validate_leave_window__mutmut_17
+-        errors["start_date"] = "Leave cannot start in the past."
++        errors["start_date"] = None
+=== app.services.x_validate_leave_window__mutmut_20
+-        errors["start_date"] = "Leave cannot start in the past."
++        errors["start_date"] = "XXLeave cannot start in the past.XX"
+=== app.services.x_validate_leave_window__mutmut_21
+-        errors["start_date"] = "Leave cannot start in the past."
++        errors["start_date"] = "leave cannot start in the past."
+=== app.services.x_validate_leave_window__mutmut_22
+-        errors["start_date"] = "Leave cannot start in the past."
++        errors["start_date"] = "LEAVE CANNOT START IN THE PAST."
+=== app.services.x_validate_leave_window__mutmut_36
+-            errors["end_date"] = "The selected range has no working days (Mon–Fri)."
++            errors["end_date"] = "XXThe selected range has no working days (Mon–Fri).XX"
+=== app.services.x_validate_leave_window__mutmut_37
+-            errors["end_date"] = "The selected range has no working days (Mon–Fri)."
++            errors["end_date"] = "the selected range has no working days (mon–fri)."
+=== app.services.x_validate_leave_window__mutmut_50
+-            "You already have a pending or approved request that overlaps these dates."
++            "XXYou already have a pending or approved request that overlaps these dates.XX"
+=== app.services.x_validate_leave_window__mutmut_51
+-            "You already have a pending or approved request that overlaps these dates."
++            "you already have a pending or approved request that overlaps these dates."
+=== app.services.x_validate_leave_window__mutmut_63
+-            errors["leave_type_id"] = (
+-                f"Only {balance.remaining_days} day(s) of {leave_type.name} "
+-                f"remain for {year}."
+-            )
++            errors["leave_type_id"] = None
+=== app.utils.xǁApiErrorǁ__init____mutmut_2
+-    super().__init__(message)
++    super().__init__(None)
+=== app.utils.xǁValidatorǁ_label__mutmut_6
+-    return label or key.replace("_", " ").capitalize()
++    return label or key.replace("XX_XX", " ").capitalize()
+=== app.utils.xǁValidatorǁ_label__mutmut_7
+-    return label or key.replace("_", " ").capitalize()
++    return label or key.replace("_", "XX XX").capitalize()
+=== app.utils.xǁValidatorǁtext__mutmut_2
+-def text(self, key, label=None, required=False, max_length=500, min_length=0):
++def text(self, key, label=None, required=False, max_length=501, min_length=0):
+=== app.utils.xǁValidatorǁtext__mutmut_18
+-        self.errors[key] = f"{label} is required."
++        self.errors[key] = None
+=== app.utils.xǁValidatorǁtext__mutmut_20
+-        self.errors[key] = f"{label} must be at least {min_length} characters."
++        self.errors[key] = None
+=== app.utils.xǁValidatorǁtext__mutmut_22
+-        self.errors[key] = f"{label} must be under {max_length} characters."
++        self.errors[key] = None
+=== app.utils.xǁValidatorǁinteger__mutmut_2
+-def integer(self, key, label=None, required=False, minimum=0, maximum=None):
++def integer(self, key, label=None, required=False, minimum=1, maximum=None):
+=== app.utils.xǁValidatorǁinteger__mutmut_3
+-    label = self._label(key, label)
++    label = None
+=== app.utils.xǁValidatorǁinteger__mutmut_5
+-    label = self._label(key, label)
++    label = self._label(key, None)
+=== app.utils.xǁValidatorǁinteger__mutmut_11
+-    if value in (None, ""):
++    if value in (None, "XXXX"):
+=== app.utils.xǁValidatorǁinteger__mutmut_12
+-            self.errors[key] = f"{label} is required."
++            self.errors[key] = None
+=== app.utils.xǁValidatorǁinteger__mutmut_18
+-        self.errors[key] = f"{label} cannot be less than {minimum}."
++        self.errors[key] = None
+=== app.utils.xǁValidatorǁinteger__mutmut_22
+-        self.errors[key] = f"{label} cannot be more than {maximum}."
++        self.errors[key] = None
+=== app.utils.xǁValidatorǁdate__mutmut_2
+-    label = self._label(key, label)
++    label = None
+=== app.utils.xǁValidatorǁdate__mutmut_4
+-    label = self._label(key, label)
++    label = self._label(key, None)
+=== app.utils.xǁValidatorǁdate__mutmut_10
+-    if value in (None, ""):
++    if value in (None, "XXXX"):
+=== app.utils.xǁValidatorǁdate__mutmut_11
+-            self.errors[key] = f"{label} is required."
++            self.errors[key] = None
+=== app.utils.xǁValidatorǁraise_if_errors__mutmut_1
+-        raise ApiError("Please check the submitted fields.", 422, self.errors)
++        raise ApiError(None, 422, self.errors)
+=== app.utils.xǁValidatorǁraise_if_errors__mutmut_7
+-        raise ApiError("Please check the submitted fields.", 422, self.errors)
++        raise ApiError("XXPlease check the submitted fields.XX", 422, self.errors)
+=== app.utils.xǁValidatorǁraise_if_errors__mutmut_8
+-        raise ApiError("Please check the submitted fields.", 422, self.errors)
++        raise ApiError("please check the submitted fields.", 422, self.errors)
+=== app.utils.xǁValidatorǁraise_if_errors__mutmut_9
+-        raise ApiError("Please check the submitted fields.", 422, self.errors)
++        raise ApiError("PLEASE CHECK THE SUBMITTED FIELDS.", 422, self.errors)
+=== app.utils.x_json_body__mutmut_5
+-        raise ApiError("Request body must be a JSON object.", 400)
++        raise ApiError(None, 400)
+=== app.utils.x_json_body__mutmut_7
+-        raise ApiError("Request body must be a JSON object.", 400)
++        raise ApiError(400)
+=== app.utils.x_json_body__mutmut_8
+-        raise ApiError("Request body must be a JSON object.", 400)
++        raise ApiError("Request body must be a JSON object.", )
+=== app.utils.x_json_body__mutmut_9
+-        raise ApiError("Request body must be a JSON object.", 400)
++        raise ApiError("XXRequest body must be a JSON object.XX", 400)
+=== app.utils.x_json_body__mutmut_10
+-        raise ApiError("Request body must be a JSON object.", 400)
++        raise ApiError("request body must be a json object.", 400)
+=== app.utils.x_json_body__mutmut_11
+-        raise ApiError("Request body must be a JSON object.", 400)
++        raise ApiError("REQUEST BODY MUST BE A JSON OBJECT.", 400)
+=== app.utils.x_current_user__mutmut_15
+-        raise ApiError("Account no longer exists.", 401)
++        raise ApiError("XXAccount no longer exists.XX", 401)
+=== app.utils.x_current_user__mutmut_16
+-        raise ApiError("Account no longer exists.", 401)
++        raise ApiError("account no longer exists.", 401)
+=== app.utils.x_pagination_args__mutmut_19
+-        raise ApiError("Page and per_page must be whole numbers.", 400)
++        raise ApiError(None, 400)
+=== app.utils.x_pagination_args__mutmut_21
+-        raise ApiError("Page and per_page must be whole numbers.", 400)
++        raise ApiError(400)
+=== app.utils.x_pagination_args__mutmut_22
+-        raise ApiError("Page and per_page must be whole numbers.", 400)
++        raise ApiError("Page and per_page must be whole numbers.", )
+=== app.utils.x_pagination_args__mutmut_23
+-        raise ApiError("Page and per_page must be whole numbers.", 400)
++        raise ApiError("XXPage and per_page must be whole numbers.XX", 400)
+=== app.utils.x_pagination_args__mutmut_24
+-        raise ApiError("Page and per_page must be whole numbers.", 400)
++        raise ApiError("page and per_page must be whole numbers.", 400)
+=== app.utils.x_pagination_args__mutmut_25
+-        raise ApiError("Page and per_page must be whole numbers.", 400)
++        raise ApiError("PAGE AND PER_PAGE MUST BE WHOLE NUMBERS.", 400)
+=== app.api.leaves.x_get_request_or_404__mutmut_7
+-        raise ApiError("Leave request not found.", 404)
++        raise ApiError(None, 404)
+=== app.api.leaves.x_get_request_or_404__mutmut_11
+-        raise ApiError("Leave request not found.", 404)
++        raise ApiError("XXLeave request not found.XX", 404)
+=== app.api.leaves.x_get_request_or_404__mutmut_12
+-        raise ApiError("Leave request not found.", 404)
++        raise ApiError("leave request not found.", 404)
+=== app.api.leaves.x_get_request_or_404__mutmut_13
+-        raise ApiError("Leave request not found.", 404)
++        raise ApiError("LEAVE REQUEST NOT FOUND.", 404)
+=== app.api.leaves.x_get_request_or_404__mutmut_18
+-        raise ApiError("Leave request not found.", 404)
++        raise ApiError(None, 404)
+=== app.api.leaves.x_get_request_or_404__mutmut_22
+-        raise ApiError("Leave request not found.", 404)
++        raise ApiError("XXLeave request not found.XX", 404)
+=== app.api.leaves.x_get_request_or_404__mutmut_23
+-        raise ApiError("Leave request not found.", 404)
++        raise ApiError("leave request not found.", 404)
+=== app.api.leaves.x_get_request_or_404__mutmut_24
+-        raise ApiError("Leave request not found.", 404)
++        raise ApiError("LEAVE REQUEST NOT FOUND.", 404)
