@@ -1,0 +1,7 @@
+custom operators: total=46 killed=44 survived=2 score=95.7%
+  BALANCE: killed=4 survived=0
+  LIMIT: killed=10 survived=2
+  OWNER: killed=8 survived=0
+  ROLE: killed=6 survived=0
+  STATUS: killed=14 survived=0
+  USED: killed=2 survived=0

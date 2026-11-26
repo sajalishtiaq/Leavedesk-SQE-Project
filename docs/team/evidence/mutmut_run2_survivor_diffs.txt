@@ -1,0 +1,13 @@
+=== app.services.x_balance_for__mutmut_14
+-            used_days=0,
++            used_days=None,
+=== app.services.x_balance_for__mutmut_19
+-            used_days=0,
+-        )
++            )
+=== app.utils.x_json_body__mutmut_8
+-        raise ApiError("Request body must be a JSON object.", 400)
++        raise ApiError("Request body must be a JSON object.", )
+=== app.utils.x_pagination_args__mutmut_22
+-        raise ApiError("Page and per_page must be whole numbers.", 400)
++        raise ApiError("Page and per_page must be whole numbers.", )

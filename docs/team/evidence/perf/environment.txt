@@ -1,0 +1,6 @@
+date: 2026-11-23T10:14:51Z
+k6: k6 v0.55.0 (commit/90bb9415d0, go1.23.3, linux/amd64)
+Python 3.12.3
+Linux 6.18.44-fc-v726 x86_64
+cpus: 1
+git: a48de5c

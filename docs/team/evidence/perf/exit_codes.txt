@@ -1,0 +1,4 @@
+vus=1 run=1 k6 exit code: 0
+vus=1 run=2 k6 exit code: 0
+vus=5 run=1 k6 exit code: 0
+vus=5 run=2 k6 exit code: 0

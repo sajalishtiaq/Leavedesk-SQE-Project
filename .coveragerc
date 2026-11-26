@@ -1,0 +1,11 @@
+# Scope = server-side business logic of the two selected workflows.
+[run]
+branch = True
+include =
+    */app/services.py
+    */app/utils.py
+    */app/api/leaves.py
+
+[report]
+show_missing = True
+fail_under = 100

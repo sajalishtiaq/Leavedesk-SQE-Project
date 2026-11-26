@@ -1,0 +1,11 @@
+--- a/backend/app/utils.py
++++ b/backend/app/utils.py
+@@ -67,7 +67,7 @@
+             return None
+         try:
+             parsed = int(value)
+-        except (TypeError, ValueError):
++        except (TypeError, ValueError, OverflowError):
+             self.errors[key] = f"{label} must be a whole number."
+             return None
+         if parsed < minimum:

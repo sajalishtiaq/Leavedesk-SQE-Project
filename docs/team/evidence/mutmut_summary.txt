@@ -1,0 +1,1 @@
+mutmut: total=350 killed=346 survived=4 timeout=0 suspicious=0 score=98.9%

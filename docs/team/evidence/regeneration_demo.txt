@@ -1,0 +1,20 @@
+generated 71 cases (EP=41, BVA=30) -> /tmp/regen_demo/cases.json
+
+Changed generated values (old -> new):
+  leave_type_id  maximum_below        2                 valid=True  -> 4                 valid=True
+  leave_type_id  maximum_at           3                 valid=True  -> 5                 valid=True
+  leave_type_id  maximum_above        4                 valid=False -> 6                 valid=False
+  reason         valid                'aaaaaaaaaaaaa... valid=True  -> 'aaaaaaaaaaaaa... valid=True
+  reason         minLength_below      'aaaaaaaaa'       valid=False -> 'aaaaaaaaaaaaa... valid=False
+  reason         minLength_at         'aaaaaaaaaa'      valid=True  -> 'aaaaaaaaaaaaa... valid=True
+  reason         minLength_above      'aaaaaaaaaaa'     valid=True  -> 'aaaaaaaaaaaaa... valid=True
+
+Running API tests against the UNCHANGED app with the regenerated data (expect failures = effect):
+E        +  where 201 = <WrapperTestResponse streamed [201 CREATED]>.status_code
+E        +  and   422 = expected_status({'endpoint': 'applyLeave', 'location': 'body', 'field': 'reason', 'technique': 'BVA', ...})
+
+tests/team/api/test_generated.py:62: AssertionError
+=========================== short test summary info ============================
+FAILED tests/team/api/test_generated.py::test_generated_case[applyLeave-leave_type_id-BVA-maximum_below-9]
+FAILED tests/team/api/test_generated.py::test_generated_case[applyLeave-leave_type_id-BVA-maximum_at-10]
+FAILED tests/team/api/test_generated.py::test_generated_case[applyLeave-reason-BVA-minLength_below-32]

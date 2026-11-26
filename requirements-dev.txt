@@ -1,0 +1,7 @@
+pytest>=8,<10
+pytest-cov
+coverage
+mutmut>=3
+pip-audit
+pyyaml
+requests

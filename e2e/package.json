@@ -1,0 +1,19 @@
+{
+  "name": "leavedesk-e2e",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "install-browsers": "playwright install chromium",
+    "test": "playwright test",
+    "test:ui-only": "playwright test tests/uc1-apply.spec.ts tests/uc2-review.spec.ts tests/uc3-cancel.spec.ts tests/uc4-auth.spec.ts",
+    "a11y:before": "A11Y_LABEL=before playwright test tests/a11y.spec.ts",
+    "a11y:after": "A11Y_LABEL=after playwright test tests/a11y.spec.ts",
+    "lighthouse": "node lighthouse.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.0",
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^22.0.0",
+    "lighthouse": "^12.2.1"
+  }
+}
