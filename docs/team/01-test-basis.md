@@ -87,3 +87,10 @@ Basis = upstream `README.md` + source code (no formal spec).
 | `LeaveBalance` row | creates default row if missing | creates default row if missing |
 | `LeaveType` | reads (exists, default days) | reads |
 | `User` | reads (role, active) | reads (role, ownership) |
+
+## 1.9 My Understanding
+Workflow A, Apply for leave: an employee picks a leave type, dates and a reason. The system counts only working days (Mon–Fri), and if the request is valid it saves it as pending (mine was 2 days). A pending request does not change the balance.
+
+Workflow B, Review and cancel: an admin approves or rejects a pending request. Approving changes its status to approved and reduces the employee's remaining balance by the request's days. If the employee cancels an approved request before it starts, the days are returned and my balance went back to 10.
+
+Shared record: LeaveBalance.used_days. Workflow A reads it to decide whether a request fits, and Workflow B changes it on approval (and on cancelling an approved request).
