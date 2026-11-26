@@ -74,7 +74,7 @@ jobs:
           python scripts/sonar_setup.py http://localhost:9000
         env: {SONAR_ADMIN_PASSWORD: admin}
       - name: Scan
-        uses: SonarSource/sonarqube-scan-action@v5
+        uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_HOST_URL: http://localhost:9000
           SONAR_TOKEN: ${{ env.SONAR_TOKEN }}

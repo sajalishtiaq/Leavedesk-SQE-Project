@@ -5,13 +5,13 @@ Fill the "Understood by" column honestly; each member should be able to explain 
 
 | # | Date | Tool | Task | What AI produced | What the team verified / changed | Understood by |
 |---|---|---|---|---|---|---|
-| 1 | | Claude (Anthropic) | Repository selection | Shortlist of 5 repos; checked licence, size, business logic by cloning; chose LeaveDesk (MIT, Flask+React+SQLite) | Team confirmed licence file, ran upstream tests (53 pass), registered in the sheet | |
-| 2 | | Claude | Test basis + business rules | Requirements, rules BR1-BR6, access matrix, assumptions | Cross-checked every rule against `services.py` / `leaves.py` | |
-| 3 | | Claude | Unit + API test suite (`tests/team`) | 326 tests incl. decision tables, state matrix, BVA | Ran with coverage (100 % statement + branch); reviewed each file | |
-| 4 | | Claude | OpenAPI spec + generator + generated tests | `api-spec/openapi.yaml`, `tools/gen_test_data.py`, `test_generated.py` | Regenerated with changed constraints (`scripts/demo_regen.sh`) | |
-| 5 | | Claude | Mutation analysis + custom operators | mutmut config, `tools/custom_mutation.py`, killer tests, analysis of 66 survivors | Re-ran; read every survivor diff; confirmed 4 equivalent mutants | |
-| 6 | | Claude | CI workflow, Sonar setup, perf and recovery scripts | YAML, scripts, k6 workload, recovery tests | CI/Sonar/ZAP/Playwright **must be run by the team** (not executed by the AI); results pasted from your runs | |
-| 7 | | Claude | Documentation drafts | Test plan, risk register, defect log + RCA, security assessment | Edit numbers/names, verify against your own evidence | |
+| 1 | 24-11-26 | Claude (Anthropic) | Repository selection | Shortlist of 5 repos; checked licence, size, business logic by cloning; chose LeaveDesk (MIT, Flask+React+SQLite) | Team confirmed licence file, ran upstream tests (53 pass), registered in the sheet | Saliha Noor |
+| 2 | 24-11-26 | Claude | Test basis + business rules | Requirements, rules BR1-BR6, access matrix, assumptions | Cross-checked every rule against `services.py` / `leaves.py` | Sajal Ishtiaq |
+| 3 | 24-11-26 | Claude | Unit + API test suite (`tests/team`) | 326 tests incl. decision tables, state matrix, BVA | Ran with coverage (100 % statement + branch); reviewed each file | Sajal Ishtiaq |
+| 4 | 24-11-26 | Claude | OpenAPI spec + generator + generated tests | `api-spec/openapi.yaml`, `tools/gen_test_data.py`, `test_generated.py` | Regenerated with changed constraints (`scripts/demo_regen.sh`) | Sajal Ishtiaq |
+| 5 | 24-11-26 | Claude | Mutation analysis + custom operators | mutmut config, `tools/custom_mutation.py`, killer tests, analysis of 66 survivors | Re-ran; read every survivor diff; confirmed 4 equivalent mutants | Saliha Noor |
+| 6 | 27-11-26 | Claude | CI workflow, Sonar setup, perf and recovery scripts | YAML, scripts, k6 workload, recovery tests | CI/Sonar/ZAP/Playwright **must be run by the team** (not executed by the AI); results pasted from your runs | Sajal Ishtiaq |
+| 7 | 28-11-26 | Claude | Documentation drafts | Test plan, risk register, defect log + RCA, security assessment | Edit numbers/names, verify against your own evidence | Saliha Noor |
 
 ## Things the AI found that you must be able to explain
 * DEF-001 (OverflowError -> 500) was found while writing boundary tests; DEF-009 (race in `balance_for`) was found from k6 server logs at 5 users.
