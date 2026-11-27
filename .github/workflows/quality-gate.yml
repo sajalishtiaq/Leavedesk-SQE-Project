@@ -84,3 +84,11 @@ jobs:
         env:
           SONAR_TOKEN: ${{ env.SONAR_TOKEN }}
           SONAR_HOST_URL: http://localhost:9000
+      - name: Show Sonar gate details
+        if: always()
+        run: |
+          curl -s -u "$SONAR_TOKEN:" "http://localhost:9000/api/qualitygates/project_status?projectKey=leavedesk-sqe" | python3 -m json.tool
+          curl -s -u "$SONAR_TOKEN:" "http://localhost:9000/api/measures/component?component=leavedesk-sqe&metricKeys=coverage,bugs,vulnerabilities,code_smells,duplicated_lines_density,ncloc,sqale_index,security_hotspots" | python3 -m json.tool
+          curl -s -u "$SONAR_TOKEN:" "http://localhost:9000/api/issues/search?componentKeys=leavedesk-sqe&resolved=false&ps=50" | jq -r '.issues[] | "\(.severity) \(.rule) \(.component):\(.line) \(.message)"'
+        env:
+          SONAR_TOKEN: ${{ env.SONAR_TOKEN }}
