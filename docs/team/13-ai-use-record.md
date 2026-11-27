@@ -1,7 +1,7 @@
 # 13. Responsible AI-Use Record (required in the PDF; part of the 20 viva marks)
 
 **Rule for this project:** AI may draft; the team must be able to explain, rerun and defend every artefact. Anything you cannot explain in the viva loses marks.
-Fill the "Understood by" column honestly; each member should be able to explain at least the rows of their own area.
+
 
 | # | Date | Tool | Task | What AI produced | What the team verified / changed | Understood by |
 |---|---|---|---|---|---|---|
