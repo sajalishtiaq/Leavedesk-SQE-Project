@@ -1,7 +1,7 @@
 # 13. Responsible AI-Use Record (required in the PDF; part of the 20 viva marks)
 
 **Rule for this project:** AI may draft; the team must be able to explain, rerun and defend every artefact. Anything you cannot explain in the viva loses marks.
-Fill the "Understood by" column honestly; each member should be able to explain at least the rows of their own area.
+
 
 | # | Date | Tool | Task | What AI produced | What the team verified / changed | Understood by |
 |---|---|---|---|---|---|---|
@@ -11,7 +11,10 @@ Fill the "Understood by" column honestly; each member should be able to explain 
 | 4 | 24-11-26 | Claude | OpenAPI spec + generator + generated tests | `api-spec/openapi.yaml`, `tools/gen_test_data.py`, `test_generated.py` | Regenerated with changed constraints (`scripts/demo_regen.sh`) | Sajal Ishtiaq |
 | 5 | 24-11-26 | Claude | Mutation analysis + custom operators | mutmut config, `tools/custom_mutation.py`, killer tests, analysis of 66 survivors | Re-ran; read every survivor diff; confirmed 4 equivalent mutants | Saliha Noor |
 | 6 | 27-11-26 | Claude | CI workflow, Sonar setup, perf and recovery scripts | YAML, scripts, k6 workload, recovery tests | CI/Sonar/ZAP/Playwright **must be run by the team** (not executed by the AI); results pasted from your runs | Sajal Ishtiaq |
-| 7 | 28-11-26 | Claude | Documentation drafts | Test plan, risk register, defect log + RCA, security assessment | Edit numbers/names, verify against your own evidence | Saliha Noor |
+| 7 | 27-11-26 | Claude | Documentation drafts | Test plan, risk register, defect log + RCA, security assessment | Edit numbers/names, verify against your own evidence | Saliha Noor |
+| 8 |  27-11-26 | Claude (Anthropic) | CI debugging | Diagnosis of the mutation failure (exit 126); a step that prints the Sonar gate details; suggested scoping Sonar coverage and ignoring S4502 for one file | Ran the pipeline ourselves and read the real gate output; checked the source (no cookies, bearer-token header) before accepting S4502 as not applicable; all three jobs green on our PR | Sajal Ishtiaq |
+| 9 | 27-11-26 | Claude (Anthropic) | Environment setup troubleshooting | Fixes for WSL line endings, Windows npm vs Linux Node, git file modes, fork and branch setup | Applied each fix and confirmed the app runs and tests pass | Sajal Ishtiaq |
+| 10 | 27-11-26 | Claude (Anthropic) | Planning and brief analysis | Phase plan and ownership split from the project brief and the teacher's announcement | Compared the plan with the brief | Sajal Ishtiaq |
 
 ## Things the AI found that you must be able to explain
 * DEF-001 (OverflowError -> 500) was found while writing boundary tests; DEF-009 (race in `balance_for`) was found from k6 server logs at 5 users.
